@@ -2,23 +2,30 @@ package com.example.battleships.model.dto;
 
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserRegisterDTO {
 
     @Size(min = 3, max = 10)
+    @NotEmpty
     private String username;
 
     @Size(min = 5, max = 20)
+    @NotEmpty
     private String fullname;
 
     @Email
+    @NotEmpty
     private String email;
 
     @Size(min = 3)
+    @NotEmpty
     private String password;
 
     @Size(min = 3)
+    @NotEmpty
     private String confirmPassword;
 
 

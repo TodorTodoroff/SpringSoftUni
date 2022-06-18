@@ -1,8 +1,9 @@
 package com.example.battleships.web;
 
 import com.example.battleships.model.dto.UserRegisterDTO;
+import com.example.battleships.services.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,9 +15,15 @@ import javax.validation.Valid;
 @Controller
 public class AuthController {
 
+    private AuthService authService;
+
+    @Autowired
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
     @GetMapping("/login")
     public String login() {
-
         return "login";
     }
 
@@ -35,14 +42,14 @@ public class AuthController {
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userRegisterDto", userRegisterDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterDto", bindingResult);
 
-        return "redirect:/register";
+            return "redirect:/register";
         }
 
-
+        this.authService.register(userRegisterDto);
 
         return "redirect:/login";
     }
