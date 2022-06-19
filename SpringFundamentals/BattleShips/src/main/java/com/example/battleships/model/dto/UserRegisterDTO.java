@@ -3,7 +3,6 @@ package com.example.battleships.model.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserRegisterDTO {
@@ -28,6 +27,9 @@ public class UserRegisterDTO {
     @NotEmpty
     private String confirmPassword;
 
+
+    public UserRegisterDTO() {
+    }
 
     public String getFullname() {
         return fullname;
@@ -67,5 +69,16 @@ public class UserRegisterDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRegisterDTO{" +
+                "username='" + username + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                '}';
     }
 }

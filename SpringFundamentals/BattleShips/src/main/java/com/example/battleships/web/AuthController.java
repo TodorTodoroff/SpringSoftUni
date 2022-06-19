@@ -49,6 +49,8 @@ public class AuthController {
             return "redirect:/register";
         }
 
+        System.out.println(userRegisterDto);
+
         this.authService.register(userRegisterDto);
 
         return "redirect:/login";
