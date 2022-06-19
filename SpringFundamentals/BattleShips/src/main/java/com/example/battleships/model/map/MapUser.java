@@ -1,12 +1,12 @@
-package com.example.battleships.model.mapper;
+package com.example.battleships.model.map;
 
 import com.example.battleships.model.User;
 import com.example.battleships.model.dto.UserRegisterDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper {
+public interface MapUser {
 
-    User userDtoToUser (UserRegisterDTO userRegisterDTO);
+    User userDTOtoUser(UserRegisterDTO userRegisterDTO);
 
 }

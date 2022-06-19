@@ -2,7 +2,7 @@ package com.example.battleships.services;
 
 import com.example.battleships.model.User;
 import com.example.battleships.model.dto.UserRegisterDTO;
-import com.example.battleships.model.mapper.UserMapper;
+import com.example.battleships.model.map.MapUser;
 import com.example.battleships.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,20 +13,26 @@ import java.util.Optional;
 public class AuthService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    private final MapUser mapUser;
 
     @Autowired
-    public AuthService(UserRepository userRepository, UserMapper userMapper) {
+    public AuthService(UserRepository userRepository, MapUser mapUser) {
         this.userRepository = userRepository;
 
-        this.userMapper = userMapper;
+
+        this.mapUser = mapUser;
     }
 
     public void register(UserRegisterDTO userRegisterDTO) {
 
-        userValidation(userRegisterDTO);
+        try {
+            userValidation(userRegisterDTO);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
 
-        User user = this.userMapper.userDtoToUser(userRegisterDTO);
+        User user = this.mapUser.userDTOtoUser(userRegisterDTO);
+
 
         this.userRepository.save(user);
 

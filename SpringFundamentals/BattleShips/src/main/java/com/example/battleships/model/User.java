@@ -11,11 +11,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(nullable = false)
-    private String fullName;
+    @Column(name = "full_name", nullable = false)
+    private String fullname;
 
     @Column(nullable = false)
     private String password;
@@ -43,12 +43,12 @@ public class User {
         this.username = username;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getPassword() {
