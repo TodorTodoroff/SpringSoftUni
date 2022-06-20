@@ -1,6 +1,7 @@
 package com.example.battleships.services;
 
 import com.example.battleships.model.User;
+import com.example.battleships.model.dto.UserLoginDTO;
 import com.example.battleships.model.dto.UserRegisterDTO;
 import com.example.battleships.model.map.MapUser;
 import com.example.battleships.repositories.UserRepository;
@@ -17,37 +18,37 @@ public class AuthService {
 
     @Autowired
     public AuthService(UserRepository userRepository, MapUser mapUser) {
-        this.userRepository = userRepository;
 
+        this.userRepository = userRepository;
 
         this.mapUser = mapUser;
     }
 
-    public void register(UserRegisterDTO userRegisterDTO) {
+    public boolean register(UserRegisterDTO userRegisterDTO) {
 
-        try {
-            userValidation(userRegisterDTO);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+        if (!userValidation(userRegisterDTO)) {
+            return false;
         }
 
         User user = this.mapUser.userDTOtoUser(userRegisterDTO);
 
-
         this.userRepository.save(user);
 
+        return true;
     }
 
-    private void userValidation(UserRegisterDTO userRegisterDTO) {
+    private boolean userValidation(UserRegisterDTO userRegisterDTO) {
         Optional<User> username = this.userRepository.findByUsername(userRegisterDTO.getUsername());
         Optional<User> email = this.userRepository.findByEmail(userRegisterDTO.getEmail());
 
-        if (username.isPresent() || email.isPresent()) {
-            throw new RuntimeException("Username or email already in use!");
-        }
+        return (!username.isPresent() && !email.isPresent()) && (userRegisterDTO.getConfirmPassword().equals(userRegisterDTO.getPassword()));
+    }
 
-        if (!userRegisterDTO.getConfirmPassword().equals(userRegisterDTO.getPassword())) {
-            throw new RuntimeException("Passwords do not match!");
-        }
+
+    public boolean login(UserLoginDTO loginDTO) {
+
+
+
+        return true;
     }
 }

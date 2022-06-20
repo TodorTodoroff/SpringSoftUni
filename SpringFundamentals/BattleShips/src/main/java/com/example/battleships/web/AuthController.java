@@ -1,5 +1,6 @@
 package com.example.battleships.web;
 
+import com.example.battleships.model.dto.UserLoginDTO;
 import com.example.battleships.model.dto.UserRegisterDTO;
 import com.example.battleships.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,39 @@ public class AuthController {
         this.authService = authService;
     }
 
+    @ModelAttribute("userRegisterDto")
+    public UserRegisterDTO initRegisterForm() {
+        return new UserRegisterDTO();
+    }
+
+    @ModelAttribute("loginDTO")
+    public UserLoginDTO initLoginForm() {
+        return new UserLoginDTO();
+    }
+
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    @ModelAttribute("userRegisterDto")
-    public UserRegisterDTO initialForm() {
-        return new UserRegisterDTO();
+    @PostMapping("/login")
+    public String login(@Valid UserLoginDTO loginDTO,
+                        BindingResult bindingResult,
+                        RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors() || !this.authService.login(loginDTO)) {
+            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.loginDTO", bindingResult);
+
+            return "redirect:/login";
+        }
+
+
+        return "redirect:/home";
     }
+
 
     @GetMapping("/register")
     public String register() {
@@ -42,17 +67,14 @@ public class AuthController {
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !this.authService.register(userRegisterDto)) {
+
             redirectAttributes.addFlashAttribute("userRegisterDto", userRegisterDto);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterDto", bindingResult);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.userRegisterDto", bindingResult);
 
             return "redirect:/register";
         }
-
-        System.out.println(userRegisterDto);
-
-        this.authService.register(userRegisterDto);
-
         return "redirect:/login";
     }
 
