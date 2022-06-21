@@ -1,6 +1,8 @@
 package com.example.battleships.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -20,6 +22,7 @@ public class Ship {
     private long power;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
 
     @ManyToOne(optional = false)

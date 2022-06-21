@@ -3,6 +3,7 @@ package com.example.battleships.web;
 import com.example.battleships.model.dto.UserLoginDTO;
 import com.example.battleships.model.dto.UserRegisterDTO;
 import com.example.battleships.services.AuthService;
+import com.example.battleships.session.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,10 +18,12 @@ import javax.validation.Valid;
 public class AuthController {
 
     private AuthService authService;
+    private LoggedUser loggedUser;
 
     @Autowired
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, LoggedUser loggedUser) {
         this.authService = authService;
+        this.loggedUser = loggedUser;
     }
 
     @ModelAttribute("userRegisterDto")
@@ -36,6 +39,9 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
+        if (loggedUser.getId() != null){
+            return "redirect:/home";
+        }
         return "login";
     }
 
@@ -44,7 +50,7 @@ public class AuthController {
                         BindingResult bindingResult,
                         RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !this.authService.login(loginDTO)) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.loginDTO", bindingResult);
@@ -52,13 +58,30 @@ public class AuthController {
             return "redirect:/login";
         }
 
+        if (!this.authService.login(loginDTO)) {
+            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
+            redirectAttributes.addFlashAttribute("badCredentials", true);
 
+            return "redirect:/login";
+        }
         return "redirect:/home";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        if (loggedUser.getId() == null){
+            return "redirect:/";
+        }
+        this.authService.logout();
+        return "index";
     }
 
 
     @GetMapping("/register")
     public String register() {
+        if (loggedUser.getId() != null){
+            return "redirect:/home";
+        }
         return "register";
     }
 
