@@ -25,18 +25,18 @@ public class AuthController {
     }
 
     @ModelAttribute("loginDto")
-    public UserLoginDTO initLogin(){
+    public UserLoginDTO initLogin() {
         return new UserLoginDTO();
     }
 
-    @ModelAttribute("reisterDto")
-    public UserRegisterDTO initRegister(){
+    @ModelAttribute("registerDTO")
+    public UserRegisterDTO initRegister() {
         return new UserRegisterDTO();
     }
 
     @GetMapping("/login")
     public String login() {
-        if (loggedUser.getId() != null){
+        if (loggedUser.getId() != null) {
             return "redirect:/home";
         }
         return "login";
@@ -46,9 +46,9 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@Valid UserLoginDTO loginDto,
                         BindingResult bindingResult,
-                        RedirectAttributes redirectAttributes){
+                        RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
 
             redirectAttributes.addFlashAttribute("loginDto", loginDto);
             redirectAttributes.addFlashAttribute(
@@ -63,13 +63,14 @@ public class AuthController {
 
             return "redirect:/login";
         }
+
         return "redirect:/home";
 
     }
 
     @GetMapping("/register")
-    public String register(){
-        if (loggedUser.getId() != null){
+    public String register() {
+        if (loggedUser.getId() != null) {
             return "redirect:/home";
         }
 
@@ -77,5 +78,22 @@ public class AuthController {
     }
 
 
+    @PostMapping("/register")
+    public String register(@Valid UserRegisterDTO registerDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors() || !this.authService.register(registerDTO)) {
+
+            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.registerDTO", bindingResult);
+
+            return "redirect:/register";
+        }
+
+        return "redirect:/login";
+
+    }
 
 }
