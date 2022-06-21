@@ -6,7 +6,7 @@ Exam for the [&quot;Spring Fundamentals&quot; course @ SoftUni.](https://judge.s
 
 The video game market is quite oversaturated but there is always room for another clone of one of the most famous movie series. A group of friends decided to try to develop this game, but they need your help to implement it. The idea is clear but due to the lack of technical knowledge from your colleagues you will have to create the business logic for this project.
 
-1.
+
 ## Database Requirements
 
 The **Database** of the **Battle Ships** application needs to support **3 entities** :
@@ -63,9 +63,10 @@ Implement the entities with the **correct data types** and implement the **repos
 
 Here is the ER Diagram:
 
-![](RackMultipart20220621-1-fuguss_html_652f4f0ad41c63bb.png)
+![image](https://user-images.githubusercontent.com/78209454/174778743-5c6f34f2-a39c-4bf7-88d6-9f38f22b096d.png)![image](https://user-images.githubusercontent.com/78209454/174778773-9b5f6af6-f440-43b0-9ead-888bddbf1e12.png)
 
-1.
+
+
 ## Initialize categories
 
 - Implement a method that checks (when app started) if the database does not have any category and
@@ -73,54 +74,54 @@ initialize them
   - You are free to do this in some different ways.
   - You can skip the description if you want
 
-1.
+
 ## Page Requirements
 
 ### Index Page (logged out user)
 
-![](RackMultipart20220621-1-fuguss_html_7a4570e81e615c8e.jpg)
+![image](https://user-images.githubusercontent.com/78209454/174778801-12f412b6-e831-4f52-926b-39b40536bba7.png)
 
 ### Login Page (logged out user)
 
-![](RackMultipart20220621-1-fuguss_html_ff0e58d60b94b318.jpg)
+![image](https://user-images.githubusercontent.com/78209454/174778839-69497406-1506-4d09-a0ec-76c3fe90f1ab.png)
 
 ### Login Page validations
 
-![](RackMultipart20220621-1-fuguss_html_b634b368f191efe8.png)
-
-![](RackMultipart20220621-1-fuguss_html_e32e0ecc1e1c9ba3.jpg)
+![image](https://user-images.githubusercontent.com/78209454/174778976-d936dc05-42ef-4ff2-9573-4b72f2f216b1.png)
+![image](https://user-images.githubusercontent.com/78209454/174778988-688f9438-e31d-45d0-8f41-397ebb3ae986.png)
 
 ### Register Page (logged out user)
+
 
 ### Register Page validations
 
 - Note: it is not necessary to show message for different passwords, just not save the user and redirect again to the register page.
 
-![](RackMultipart20220621-1-fuguss_html_f2b6ec3a951f70b4.jpg)
+![image](https://user-images.githubusercontent.com/78209454/174779139-fc53e31d-3977-411c-a2c5-2fc15e81d848.png)
 
 ### Navigation (Guest user)
 
 - Note: can access only to **Index** , **Login** , **Register** pages.
 
-![](RackMultipart20220621-1-fuguss_html_e826405199fcb40d.jpg)
+![image](https://user-images.githubusercontent.com/78209454/174779173-7899eab7-05ec-4955-832c-84d5c0586c2a.png)
 
 ### Navigation (Registered user)
 
 - Note: can access only to **Home** , **Add Ship** , **Logout**.
-
-![](RackMultipart20220621-1-fuguss_html_e4f3f3a798fc9c3.jpg)
+- 
+![image](https://user-images.githubusercontent.com/78209454/174779193-9880abc9-81c3-43d6-9f9d-94e9c838f75a.png)
 
 ### Add Ship
 
-![](RackMultipart20220621-1-fuguss_html_32696b035df427af.jpg)
+![image](https://user-images.githubusercontent.com/78209454/174779217-5e794328-6d23-468d-b5a1-d3636bd26a06.png)
 
 ### Add Ship validation
 
-![](RackMultipart20220621-1-fuguss_html_13a25262cebc2758.jpg)
+![image](https://user-images.githubusercontent.com/78209454/174779237-ecd39f4f-6280-46b4-9b22-a57dedd8c85e.png)
 
 ### Home Page
 
-![](RackMultipart20220621-1-fuguss_html_2728f265e07292f.png)
+![image](https://user-images.githubusercontent.com/78209454/174779262-b557268c-3f96-43a3-9740-bd079ba6640c.png)
 
 **NOTE:** You must select **one** of the ships that are **owned** by the **current user**.
 
@@ -138,7 +139,7 @@ The templates have been given to you in the application skeleton, so make sure y
 
 **NOTE** : The templates do **NOT**** require ****additional**** CSS **for you to write. Only the provided** bootstrap **and** CSS** are enough.
 
-1.
+
 ## Functional Requirements
 
 The **Functionality Requirements** describe the functionality that the **application** must support.
@@ -155,7 +156,7 @@ The **Fire** button **creates** the **attack** to the defender and **redirects**
 
 The **application** should **store** its **data** into a **MySQL** database.
 
-1.
+
 ## Security Requirements
 
 The **Security Requirements** are mainly access requirements. Configurations about which users can access specific functionalities and pages.
@@ -167,20 +168,7 @@ The **Security Requirements** are mainly access requirements. Configurations abo
 - **Users** (logged in) can access **Add Ship** page.
 - **Users** (logged in) can access **Logout** functionality.
 
-1.
-## Scoring
 
-### Database – 10 points.
-
-### Pages – 25 points.
-
-### Functionality – 35 points.
-
-### Security – 5 points.
-
-### Validations – 15 points.
-
-### Code Quality – 10 points.
 
 ![Shape1](RackMultipart20220621-1-fuguss_html_90c110eb660a4dd9.gif) ![Shape2](RackMultipart20220621-1-fuguss_html_5f0f2ddacbac70d2.gif) ![Shape3](RackMultipart20220621-1-fuguss_html_51bd00be29b85496.gif) ![Shape4](RackMultipart20220621-1-fuguss_html_f746d52952cd7e91.gif)[![](RackMultipart20220621-1-fuguss_html_3aa486326bfa75e9.png)](https://softuni.org/)
 
