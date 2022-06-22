@@ -42,4 +42,10 @@ public class CategoryService {
         }
 
     }
+
+    public List<Category> getAllCategories() {
+
+        return this.categoryRepository.findAll();
+
+    }
 }

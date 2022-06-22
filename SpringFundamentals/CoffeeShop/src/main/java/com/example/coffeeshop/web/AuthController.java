@@ -96,4 +96,14 @@ public class AuthController {
 
     }
 
+
+    @GetMapping("/logout")
+    public String logout() {
+        if (this.loggedUser.getId() != null) {
+            this.loggedUser.logout();
+        }
+
+        return "redirect:/";
+    }
+
 }
