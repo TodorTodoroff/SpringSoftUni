@@ -8,7 +8,9 @@ import com.example.coffeeshop.model.mapper.UserMapper;
 import com.example.coffeeshop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,5 +59,11 @@ public class AuthService {
 
     public User findById(Long id) {
         return this.userRepository.findById(id).get();
+    }
+
+    public List<User> findAllUsersWithOrdersSortedByOrderCount() {
+
+        return this.userRepository.findByOrderByOrderSize();
+
     }
 }

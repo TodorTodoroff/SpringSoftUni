@@ -1,7 +1,10 @@
 package com.example.coffeeshop.model.entites;
 
 
+import jdk.dynalink.linker.LinkerServices;
+
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -27,7 +30,22 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @OneToMany(targetEntity = Order.class, mappedBy = "employee", fetch = FetchType.EAGER)
+    private List<Order> orders;
+
     public User() {
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public int getOrderSize(){
+        return this.orders.size();
     }
 
     public Long getId() {
