@@ -19,7 +19,7 @@
             <form
                     th:action="@{/offer-add}"
                     th:method="POST"
-                    th:object="${addOfferDTO}"
+                    th:object="${addOrderDTO}"
 
                     class=" text-center text-light">
                 <div class="form-group row">
@@ -64,14 +64,13 @@
                         <select id="category" name="category" class="custom-select"
                                 th:errorclass="is-invalid"
                                 aria-describedby="categoryHelpInline">
+                            <option value="" selected>Category</option>
                             <option
-                                    th:each="cat : ${categories}"
-                                    th:text="${cat.name}"
-                                    th:value="${cat.name}"
-                                    th:selected="${cat} == *{category}"
+                                    th:each="c : ${T(com.example.coffeeshop.model.enums.CategoryTypeEnum).values()}"
+                                    th:value="${c}"
+                                    th:text="${c}"
 
-                            >Other
-                            </option>
+                            >Other</option>
 
                         </select>
                         <small id="categoryHelpInline" class="invalid-feedback bg-danger text-light rounded">

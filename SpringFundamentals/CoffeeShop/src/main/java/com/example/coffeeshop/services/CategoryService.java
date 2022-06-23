@@ -48,4 +48,9 @@ public class CategoryService {
         return this.categoryRepository.findAll();
 
     }
+
+    public Category findByName(CategoryTypeEnum name) {
+
+        return this.categoryRepository.findByName(name).orElse(null);
+    }
 }

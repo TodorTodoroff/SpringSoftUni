@@ -54,4 +54,8 @@ public class AuthService {
 
         return true;
     }
+
+    public User findById(Long id) {
+        return this.userRepository.findById(id).get();
+    }
 }

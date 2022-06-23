@@ -1,13 +1,13 @@
 package com.example.coffeeshop.model.dto;
 
-import com.example.coffeeshop.model.entites.Category;
+import com.example.coffeeshop.model.enums.CategoryTypeEnum;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class AddOfferDTO {
+public class AddOrderDTO {
 
 
     @NotEmpty
@@ -18,19 +18,21 @@ public class AddOfferDTO {
     @NotNull
     private BigDecimal price;
 
+
     @NotNull
     @PastOrPresent
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime orderTime;
 
     @NotNull
-    private Category category;
+    private CategoryTypeEnum category;
 
     @NotEmpty
     @Size(min = 5)
     private String description;
 
 
-    public AddOfferDTO() {
+    public AddOrderDTO() {
     }
 
     public String getName() {
@@ -57,11 +59,11 @@ public class AddOfferDTO {
         this.orderTime = orderTime;
     }
 
-    public Category getCategory() {
+    public CategoryTypeEnum getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryTypeEnum category) {
         this.category = category;
     }
 
@@ -71,5 +73,16 @@ public class AddOfferDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "AddOfferDTO{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", orderTime=" + orderTime +
+                ", category=" + category +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
