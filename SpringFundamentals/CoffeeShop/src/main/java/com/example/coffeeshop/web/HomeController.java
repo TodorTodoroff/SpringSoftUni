@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -48,6 +49,14 @@ public class HomeController {
 
 
         return "home";
+    }
+
+    @GetMapping("/orders/ready/{id}")
+    public String orderReady(@PathVariable Long id) {
+
+        this.orderService.readyOrder(id);
+
+        return "redirect:/home";
     }
 
 

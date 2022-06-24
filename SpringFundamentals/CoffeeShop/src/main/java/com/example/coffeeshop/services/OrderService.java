@@ -49,4 +49,9 @@ public class OrderService {
         return this.orderRepository.findByOrderByPriceDesc();
 
     }
+
+    public void readyOrder(Long id) {
+
+        this.orderRepository.deleteById(id);
+    }
 }

@@ -13,6 +13,6 @@ public interface UserRepository  extends JpaRepository<User,Long> {
 
     Optional<User> findByUsername(String username);
 
-    @Query("select u from  User u order by size(u.orders) ")
+    @Query("select u from  User u order by size(u.orders) desc ")
     List<User> findByOrderByOrderSize();
 }
