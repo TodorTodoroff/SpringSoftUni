@@ -15,10 +15,10 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private OrderMapper orderMapper;
-    private AuthService authService;
-    private LoggedUser loggedUser;
-    private CategoryService categoryService;
+    private final OrderMapper orderMapper;
+    private final AuthService authService;
+    private final LoggedUser loggedUser;
+    private final CategoryService categoryService;
 
     @Autowired
     public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, AuthService authService, LoggedUser loggedUser, CategoryService categoryService) {
