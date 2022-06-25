@@ -75,13 +75,14 @@ public class AuthService {
         Song song = this.songRepository.findById(id).get();
 
 
-        Optional<Long> first = byId.getPlaylist()
+        Long first = byId.getPlaylist()
                 .stream()
                 .map(Song::getId)
                 .filter(i -> i.equals(id))
-                .findFirst();
+                .findFirst()
+                .orElse( 0L);
 
-        if (first.isEmpty()) {
+        if (first == 0) {
 
             byId.addSongToPlayList(song);
 
